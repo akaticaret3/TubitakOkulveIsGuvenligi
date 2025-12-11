@@ -1,2 +1,0 @@
-# TubitakOkulveIsGuvenligi
-TubitakOkulveIsGuvenligi
