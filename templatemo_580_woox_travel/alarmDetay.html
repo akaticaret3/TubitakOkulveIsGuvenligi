@@ -4,9 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Yangın Alarm Sistemi Bakım Detayları</title>
 
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- ✔ BOOTSTRAP 5 (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Stil Dosyaları -->
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
   <link rel="stylesheet" href="assets/css/owl.css">
@@ -18,18 +22,24 @@
   <!-- HEADER -->
   <header class="header-area header-sticky">
     <div class="container">
-      <nav class="main-nav">
-        <a href="index.html" class="logo">
-          <img src="assets/images/logo.png" alt="">
-        </a>
-        <ul class="nav">
-          <li><a href="index.html">ANA SAYFA</a></li>
-          <li><a href="BakımOnay.html" class="active">FORM</a></li>
-          <li><a href="kategoriler.html">KATEGORİLER</a></li>
-          <li><a href="hakkimizda.html">HAKKIMIZDA</a></li>
-        </ul>
-        <a class='menu-trigger'><span>Menu</span></a>
-      </nav>
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <a href="index.html" class="logo">
+              <img src="assets/images/logo.png" alt="">
+            </a>
+
+            <ul class="nav">
+              <li><a href="index.html">ANA SAYFA</a></li>
+              <li><a href="BakımOnay.html" class="active">FORM</a></li>
+              <li><a href="kategoriler.html">KATEGORİLER</a></li>
+              <li><a href="hakkimizda.html">HAKKIMIZDA</a></li>
+            </ul>
+
+            <a class='menu-trigger'><span>Menu</span></a>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -37,22 +47,28 @@
   <div class="container mt-5 pt-4">
     <h2 class="text-center mb-4">Yangın Alarm Sistemi Bakım Detayları</h2>
 
+    <!-- ✔ İMZA BUTONU (ÇALIŞIR) -->
+    <div class="text-center mb-4">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imzaModal">
+        İmza
+      </button>
+    </div>
+
     <div class="table-responsive mb-4">
       <table class="table table-bordered table-striped">
         <thead class="table-warning">
           <tr>
             <th>Kontrol Başlığı</th>
             <th>Uygun</th>
-            <th>Bakımı Yapıldı</th>
+            <th>Bakım Yapıldı</th>
             <th>Bakım Tarihi</th>
           </tr>
         </thead>
-        <tbody id="table-body">
-        </tbody>
+        <tbody id="table-body"></tbody>
       </table>
     </div>
 
-    <!-- Sayfalar -->
+    <!-- Pagination -->
     <ul class="pagination justify-content-center mt-4">
       <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
       <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
@@ -66,8 +82,27 @@
     </div>
   </div>
 
-  <!-- JS -->
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ✔ İMZA MODAL (BİREBİR REFERANS) -->
+  <div class="modal fade" id="imzaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">İmza Görüntüle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body text-center">
+          <img src="assets/images/imza.png" alt="İmza" class="img-fluid rounded shadow">
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ✔ BOOTSTRAP 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
     const rows = [
       "Dedektörlerin fiziksel kontrolü",
@@ -98,7 +133,13 @@
 
     rows.forEach(row => {
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${row}</td><td>+</td><td>+</td><td>${date}</td>`;
+
+      if (row === "Tüm bakım işlemleri tamamlandı") {
+        tr.innerHTML = `<td colspan="3">${row}</td><td>${date}</td>`;
+      } else {
+        tr.innerHTML = `<td>${row}</td><td>+</td><td>+</td><td>${date}</td>`;
+      }
+
       tableBody.appendChild(tr);
     });
   </script>
